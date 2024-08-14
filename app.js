@@ -5,3 +5,11 @@ const path = require('path'); // 파일 및 디렉토리 경로를 다루기 위
 const session = require('express-session'); // 세션 관리를 위한 미들웨어
 const nunjucks = require('nunjucks'); // 템플릿 엔진: nunjucks
 const dotenv = require('dotenv'); // 환경 변수 관리
+
+dotenv.config() // .env 파일에 정의된 환경 변수
+
+// express 애플리케이션 생성
+const app = express();
+
+app.set('port', process.env.PORT || 8001);
+app.set('view engine', 'html'); // 뷰 엔진으로 html
