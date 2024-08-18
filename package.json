@@ -1,4 +1,16 @@
 {
+  "name": "opgg-honmono",
+  "version": "0.0.1",
+  "description": "익스프레스로 만든 opgg",
+  "main": "app.js",
+
+  "scripts": {
+    "start": "nodemon app"
+  },
+
+  "author": "ldhpop123",
+  "license": "UNLICENSED",
+
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",

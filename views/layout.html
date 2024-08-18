@@ -9,7 +9,7 @@
     <!-- 모바일 브라우저에서 레이아웃을 제어하기 위해 뷰포트 설정 -->
     <meta http-equiv="X-UA-Compatible" content = "IE=edge">
     <link rel="stylesheet" href="/main.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -42,22 +42,22 @@
                 <div class="player_info">
                     <div class="player_icon_box">
                         <img src="https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon5314.jpg" alt="" id="player_icon">
-                        <p id="player_level">1</p>
+                        <p id="player_level">{{ userLevel }}</p>
                     </div>
                     <div class="player_box">
                         <div class="mini_player_rank">
                             <img src="https://your.gg/images/emblem/Unranked.png" alt="" id="solo_rank_img" >
                             <p id="solo_rank">Unranked I</p>
-                            <p id="solo_rank_lp">0LP</p>
+                            <p id="solo_rank_lp">{{ solo_LP }}LP</p>
                         </div>
                         
                         <div class="name_tag_box">
-                            <p id="player_name">ldhpop123</p>
-                            <p id="player_tag">#KR1</p>
+                            <p id="player_name">{{ userName }}</p>
+                            <p id="player_tag">{{ userTag }}</p>
                         </div>
                         <div class="flag_iso">
-                            <img src="https://flagsapi.com/KR/flat/64.png" id="flag">
-                            <p id="player_location">KR</p>
+                            <img src="https://flagsapi.com/{{ location }}/flat/64.png" id="flag">
+                            <p id="player_location">{{ location }}</p>
                         </div>
                         <div id="reload_btn">
                             <p>전적갱신</p>
@@ -78,7 +78,7 @@
 
                             <div class="rank_mode_lp">
                                 <p class="rank_mode">Solo</p>
-                                <p class="main_lp" id="main_lp_solo">0LP</p>
+                                <p class="main_lp" id="main_lp_solo">{{ soloLp }}LP</p>
                             </div>
                         </div>
 
@@ -115,12 +115,37 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        const select_box = document.querySelector('.server_location_select');
+        const select_hidden_box = document.querySelector('.server_location_btnbox');
+
         window.onload = () => {
             if (new URL(location.href).searchParams.get('error')) {
                 alert(new URL(location.href).searchParams.get('error'));
             }
             // URL에 에러 매개변수가 있다면 경고 창을 표시
         }
+
+        // location_select_box
+        select_box.addEventListener('click', () => {
+            if (select_hidden_box.classList.contains('hidden')) {
+                select_hidden_box.classList.remove('hidden');
+                expand.textContent = 'expand_more';
+            } else {
+                select_hidden_box.classList.add('hidden');
+                expand.textContent = 'expand_less';
+            };
+        })
+
+        // location_select_btn
+        select_hidden_box.addEventListener('click', (e) => {
+            server_location.textContent = e.target.textContent
+        });
+        
+        // search
+        document.querySelector('#search_btn').addEventListener('click', () => {
+            const userName = document.querySelector('#game_name').value.split('#')
+            console.log(userName)
+        })
     </script>
     {% block script %}
     <!-- 추가 스크립트 블록을 위한 자리 표시자 -->

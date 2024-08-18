@@ -36,7 +36,7 @@ app.use(session({
 app.use('/', pageRouter); // '/' 경로로 들어오는 요청을 pageRouter로 처리하도록 설정
 
 // 요청한 라우터가 없을 경우 404 에러를 처리하는 미들웨어 추가
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
     res.locals.message = err.message; // 메러 메시지를 로컬 변수에 설정
     res.locals.error = process.NODE_ENV !== 'production' ? err : {}; // 개발 환경에서만 에러 스택 노출
     res.status(err.status || 500); // 에러 상태 코드 설정

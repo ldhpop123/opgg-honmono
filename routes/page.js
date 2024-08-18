@@ -10,28 +10,30 @@ router.use((req, res, next) => {
 
     // 플레이어 정보
     res.locals.displayname = 'ldhpop123#KR1'
-    res.locals.gamename = 'ldhpop123'
-    res.locals.gametag = '#KR1'
+    res.locals.userName = 'ldhpop123'
+    res.locals.userTag = '#KR1'
 
-    res.locals.level = 180
+    res.locals.userLevel = 180
 
     res.locals.location = 'KR'
 
-    res.locals.profileicon = '1'
+    res.locals.profileIcon = '1'
 
     // 솔랭
-    res.locals.solorank = 'unranked'
-    res.locals.sololp = 0
-    res.locals.solowins = 0
-    res.locals.sololoss = 0
+    res.locals.soloRank = 'Unranked'
+    res.locals.soloLp = 0
+    res.locals.soloWins = 0
+    res.locals.soloLoss = 0
 
     // 자랭
-    res.locals.flexrank = 'unranked'
-    res.locals.flexlp = 0
-    res.locals.flexwins = 0
-    res.locals.flexloss = 0
+    res.locals.flexRank = 'Unranked'
+    res.locals.flexLp = 0
+    res.locals.flexWins = 0
+    res.locals.flexLoss = 0
     next();
 })
 
 // 루트 경로('/')로 GET 요청이 들어오면 renderMain 컨트롤러를 실행
 router.get('/', renderMain)
+
+module.exports = router; // 라우터 객체를 모듈로 내보냄
